@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.your42network>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:31:08 by marimedi          #+#    #+#             */
-/*   Updated: 2023/11/28 10:31:11 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:51:51 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,3 @@ int	ft_isascii(int c)
 		return (1);
 	return (0);
 }
-/*
- */

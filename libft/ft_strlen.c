@@ -6,13 +6,13 @@
 /*   By: marimedi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:35:44 by marimedi          #+#    #+#             */
-/*   Updated: 2023/11/28 10:50:16 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:03:25 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -23,10 +23,3 @@ size_t	ft_strlen(char *str)
 	}
 	return (i);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	printf("%zu\n", ft_strlen("hola que pasa"));
-}
-*/

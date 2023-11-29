@@ -1,17 +1,25 @@
+# Name of the library //
 NAME = libft.a
-SRCS = $(wildcard *.c)
+
+# Sources //
+SRCS = $(filter-out testing.c, $(wildcard *.c))
+
+# Objects //
 OBJS = $(SRCS:.c=.o)
+
+# Compile //
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
+# Aim of the program//
 all : $(NAME)
 
+# RULES --> TARGET: DEPENDENCES --> TAB --> RECIPE (ACTIONS) //
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
-
-
-%.o: %.c
+# RULE FOR CREATING THE OBJECTS
+$(OBJS): %.o : %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Regla para limpiar los archivos objeto
