@@ -6,11 +6,11 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:46:28 by marimedi          #+#    #+#             */
-/*   Updated: 2023/11/30 17:54:34 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:02:42 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c + 32);

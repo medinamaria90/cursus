@@ -6,25 +6,22 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:56:51 by marimedi          #+#    #+#             */
-/*   Updated: 2023/11/30 18:40:25 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:15:32 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char 	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
-			return ((char *)(s + i));
+		if (s[i] == (char)c)
+			return ((char *)(&s[i]));
 		i++;
 	}
-	if (
-		c == '\0')
-		return ((char *)(s + i));
+	if ((char)c == '\0')
+		return ((char *)(&s[i]));
 	return (0);
 }
