@@ -6,11 +6,12 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:04:31 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/01 14:01:35 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/01 21:26:42 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdlib.h>
 
 int		ft_isalpha(int param);
 int		ft_isdigit(int param);
@@ -30,6 +31,11 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
 void	*ft_memchr(const void *s, int c, size_t n);
-
-char	*ft_strstr(char *str, char *to_find);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_atoi(char *str);
+void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_strdup(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const*s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);

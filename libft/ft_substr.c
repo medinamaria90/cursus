@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 13:09:58 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/01 17:05:32 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/01 19:32:31 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/01 20:11:32 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	i;
+	char			*substr;
+	unsigned int	slen;
 
-	str = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		if (str[i] == (char)c)
-			return (&str[i]);
-		i++;
-	}
-	return (0);
+	slen = ft_strlen(s);
+	if (s == NULL)
+		return (NULL);
+	if (slen <= start)
+		return (ft_strdup(""));
+	if ((slen - start) < len)
+		len = slen - start;
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (substr == NULL)
+		return (NULL);
+	ft_strlcpy(substr, &s[start], len + 1);
+	return (substr);
 }
-/*
-int	main(void)
-{
-	const char	*str = (char *)ft_memchr("Holaaaaaa", 'a', 7);
-	printf("%s\n", str);
-}
-*/
+
+

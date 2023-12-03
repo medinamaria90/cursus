@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 13:09:58 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/01 17:05:32 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/01 17:01:55 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/01 17:09:50 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*str;
-	size_t	i;
+	size_t	count;
+	char	*str1;
+	char	*str2;
 
-	str = (char *)s;
-	i = 0;
-	while (i < n)
+	str1 = (char *)s1;
+	str2 = (char *)s2;
+	count = 0;
+	while (n > count)
 	{
-		if (str[i] == (char)c)
-			return (&str[i]);
-		i++;
+		if ((unsigned char)str1[count] > (unsigned char)str2[count])
+			return (1);
+		else if ((unsigned char)str1[count] < (unsigned char)str2[count])
+			return (-1);
+		count ++;
 	}
 	return (0);
 }
-/*
-int	main(void)
-{
-	const char	*str = (char *)ft_memchr("Holaaaaaa", 'a', 7);
-	printf("%s\n", str);
-}
-*/

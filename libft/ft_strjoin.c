@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 13:09:58 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/01 17:05:32 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/01 20:19:47 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/01 20:40:26 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strjoin(char const*s1, char const *s2)
 {
-	char	*str;
-	size_t	i;
+	char	*s3;
+	size_t	lens1;
+	size_t	lens2;
 
-	str = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		if (str[i] == (char)c)
-			return (&str[i]);
-		i++;
-	}
-	return (0);
+	lens1 = ft_strlen(s1);
+	lens2 = ft_strlen(s2);
+	s3 = (char *)malloc(((lens1 + lens2) + 1) * sizeof(char));
+	if (s3 == NULL)
+		return (NULL);
+	ft_strlcpy(s3, s1, lens1 + 1);
+	ft_strlcat(s3, s2, lens2 + lens1 + 1);
+	return (s3);
 }
-/*
-int	main(void)
-{
-	const char	*str = (char *)ft_memchr("Holaaaaaa", 'a', 7);
-	printf("%s\n", str);
-}
-*/
+
+
