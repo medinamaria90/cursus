@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:01:55 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/01 17:09:50 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/04 10:28:12 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	count = 0;
 	while (n > count)
 	{
-		if ((unsigned char)str1[count] > (unsigned char)str2[count])
-			return (1);
-		else if ((unsigned char)str1[count] < (unsigned char)str2[count])
-			return (-1);
+		if ((unsigned char)str1[count] != (unsigned char)str2[count])
+			return ((unsigned char)str1[count] - (unsigned char)str2[count]);
 		count ++;
 	}
 	return (0);
