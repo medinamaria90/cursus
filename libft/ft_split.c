@@ -6,86 +6,104 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 19:04:45 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/04 14:13:45 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:59:36 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 
-
-
-static	void	ft_find_words(char **array, char *str, char c)
+static void	ft_free_array(char **array)
 {
-	int		str_s_pos;
-	int		str_f_pos;
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+static void	ft_skip_char(const char *str, char c, size_t *str_f, size_t *str_s)
+{
+	while (str[*str_f] == c)
+		(*str_f)++;
+	*str_s = *str_f;
+}
+
+static void	ft_take_word(const char *str, char c, size_t *str_f)
+{
+	while (str[*str_f] != c && str[*str_f] != '\0')
+		(*str_f)++;
+}
+
+static	void	ft_find_words(char **array, const char *str, char c)
+{
+	size_t	str_s;
+	size_t	str_f;
 	int		arr_pos;
 	char	*tempstr;
-	int		strlen;
 
-	strlen = ft_strlen(str);
-	printf("in ft_find_words str = %s\n", str);
-	str_s_pos = 0;
-	str_f_pos = 0;
+	str_f = 0;
+	str_s = 0;
 	arr_pos = 0;
-	while (str_f_pos <= strlen)
+	while (str[str_f] != '\0')
 	{
-		if ((str[str_f_pos] == c || str_f_pos == strlen))
+		ft_skip_char(str, c, &str_f, &str_s);
+		ft_take_word(str, c, &str_f);
+		if (str_f > str_s)
 		{
-			if (str_f_pos > str_s_pos + 1)
+			tempstr = (char *)malloc((str_f - str_s + 1) * sizeof(char));
+			if (tempstr == NULL)
 			{
-				tempstr = ft_strdup(&str[str_s_pos]);
-				ft_bzero(&tempstr[str_f_pos - str_s_pos], strlen - str_f_pos);
-				array[arr_pos] = tempstr;
-				arr_pos++;
-				str_s_pos = str_f_pos + 1;
+				ft_free_array(array);
+				return (NULL);
 			}
-			else
-			{
-				str_s_pos++;
-				str_f_pos++;
-			}
+			ft_strlcpy(tempstr, &str[str_s], str_f - str_s + 1);
+			array[arr_pos++] = tempstr;
 		}
-		str_f_pos++;
 	}
 	array[arr_pos] = NULL;
 }
 
-static	size_t	ft_calculate_size_array(char const *s, char c)
+static size_t	ft_calculate_size_array(const char *s, char c)
 {
-	size_t	size;
-	size_t	counter;
+	size_t size;
+	size_t counter;
 
-	counter = 0;
 	size = 0;
+	counter = 0;
 	while (s[counter])
 	{
-		if (s[counter] == c)
+		if (s[counter] != c && (counter == 0 || s[counter - 1] == c))
 			size++;
 		counter++;
 	}
-	return (size + 1);
+	return (size);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	size_t	size_array;
-	char	*trimmedstr;
 	char	**array;
-	
-	trimmedstr = ft_strtrim(s, &c);
-	size_array = ft_calculate_size_array(trimmedstr, c);
-	array = (char **)malloc((sizeof(char *) * (size_array)) + 1);
+
+	size_array = ft_calculate_size_array(s, c);
+	array = (char **)malloc((sizeof(char *) * (size_array + 1)));
 	if (array == NULL)
 		return (NULL);
-	ft_find_words(array, trimmedstr, c);
+	else
+		if (ft_find_words(array, s, c) != 1)
+			return (NULL);
 	return (array);
 }
 
+/*
 int main()
 {
     char **result;
-    char *str = "   Hola  mundo, soy  yo  ";
+    char *str =  " Hello   there ";
     char c = ' ';
     int i = 0;
 
@@ -96,11 +114,6 @@ int main()
         printf("%s\n", result[i]);
         i++;
     }
-
-    // Aquí debes liberar la memoria asignada por ft_split
-    // for (i = 0; result[i]; i++)
-    //     free(result[i]);
-    // free(result);
-
     return 0;
 }
+*/
