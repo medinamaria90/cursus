@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 19:32:31 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/09 11:24:27 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/07 14:13:45 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/09 11:47:53 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char			*substr;
-	unsigned int	slen;
-
-	slen = ft_strlen(s);
-	if (s == NULL)
-		return (NULL);
-	if (slen <= start)
-		return (ft_strdup(""));
-	if ((slen - start) < len)
-		len = slen - start;
-	substr = (char *)malloc((len + 1) * sizeof(char));
-	if (substr == NULL)
-		return (NULL);
-	ft_strlcpy(substr, &s[start], len + 1);
-	return (substr);
+	new -> next = *lst;
+	*lst = new;
 }
+/*
+int	main(void)
+{
+	t_list	*root;
+
+	root = NULL;
+	ft_lstadd_front(&root, ft_lstnew("Hola "));
+	ft_lstadd_front(&root, ft_lstnew(" Que "));
+	ft_lstadd_front(&root, ft_lstnew(" tal "));
+	t_list *current = root;
+	while (current != NULL) 
+    {
+		printf("%s", (char *)current->content);
+		current = current->next;
+    }
+}
+*/

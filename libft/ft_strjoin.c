@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:19:47 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/01 20:40:26 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:25:39 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,3 @@ char	*ft_strjoin(char const*s1, char const *s2)
 	ft_strlcat(s3, s2, lens2 + lens1 + 1);
 	return (s3);
 }
-
-

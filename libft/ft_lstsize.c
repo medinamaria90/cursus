@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 17:01:55 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/09 11:45:42 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/09 10:34:19 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/09 11:47:39 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	count;
-	char	*str1;
-	char	*str2;
+	int	count;
 
-	str1 = (char *)s1;
-	str2 = (char *)s2;
+	if (lst == NULL)
+		return (0);
 	count = 0;
-	while (n > count)
+	while (lst != NULL)
 	{
-		if ((unsigned char)str1[count] != (unsigned char)str2[count])
-			return ((unsigned char)str1[count] - (unsigned char)str2[count]);
-		count ++;
+		lst = lst->next;
+		count++;
 	}
-	return (0);
+	return (count);
 }
+/*
+int	main(void)
+{
+	char *str1 = "Hola";
+	char *str2 = "Que";
+	char *str3 = "Tal";
+	t_list *node1;
+	t_list *node2;
+	t_list *node3;
+
+	node1 = ft_lstnew(str1);
+	node2 = ft_lstnew(str2);
+	node3 = ft_lstnew(str3);
+	node2->next = node3;
+	node1->next = node2;
+	printf("%d\n", ft_lstsize(node1));
+}
+*/
