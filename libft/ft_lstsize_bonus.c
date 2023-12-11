@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 11:30:55 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/10 12:07:20 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/09 10:34:19 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/11 11:41:40 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_lstsize(t_list *lst)
 {
+	int	count;
+
 	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
+		return (0);
+	count = 0;
+	while (lst != NULL)
+	{
 		lst = lst->next;
-	return (lst);
+		count++;
+	}
+	return (count);
 }
 /*
 int	main(void)
 {
-	char	*elem0 = "Hola";
-	char	*elem1 = "Que";
-	char	*elem2 = "Tal";
-	t_list	*node0 = ft_lstnew(elem0);
-	t_list	*node1 = ft_lstnew(elem1);
-	t_list	*node2 = ft_lstnew(elem2);
-	ft_lstadd_front(&node2, node1);
-	ft_lstadd_front(&node1, node0);
-	printf("The last node is: %s\n", (char*)ft_lstlast(node0)->content);
-	printf("The node after last node is: %s\n", (char*)ft_lstlast(node0)->next);
+	char *str1 = "Hola";
+	char *str2 = "Que";
+	char *str3 = "Tal";
+	t_list *node1;
+	t_list *node2;
+	t_list *node3;
+
+	node1 = ft_lstnew(str1);
+	node2 = ft_lstnew(str2);
+	node3 = ft_lstnew(str3);
+	node2->next = node3;
+	node1->next = node2;
+	printf("%d\n", ft_lstsize(node1));
 }
 */

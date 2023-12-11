@@ -6,36 +6,39 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 08:48:03 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/09 11:38:13 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:42:10 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_write_zero(void)
+static char	*ft_write_zero(void)
 {
 	char	*str;
 
 	str = (char *)malloc(sizeof(char) + 1);
-	str[1] = '\0';
+	if (str == NULL)
+		return (NULL);
 	str[0] = '0';
+	str[1] = '\0';
 	return (str);
 }
 
-void	ft_write_small(char *str, int *digit, int *n)
+static char	*ft_write_smallest(void)
 {
-	str[*digit] = '8';
-	*n = -214748364;
-	(*digit)--;
+	char	*str;
+
+	str = ft_strdup("-2147483648");
+	if (str == NULL)
+		return (NULL);
+	return (str);
 }
 
-int	ft_num_digits(int n)
+static int	ft_num_digits(int n)
 {
 	int	digits;
 
 	digits = 1;
-	if (n == -2147483648)
-		return (11);
 	if (n < 0)
 	{
 		digits++;
@@ -54,15 +57,15 @@ char	*ft_itoa(int n)
 	char	*str;
 	int		digits;
 
+	if (n == -2147483648)
+		return (ft_write_smallest());
 	if (n == 0)
 		return (ft_write_zero());
 	digits = ft_num_digits(n);
-	(str = (char *)malloc(sizeof(char) * digits + 1));
+	str = (char *)malloc(sizeof(char) * digits + 1);
 	if (str == NULL)
 		return (NULL);
 	str[digits--] = '\0';
-	if (n == -2147483648)
-		ft_write_small(str, &digits, &n);
 	if (n < 0)
 	{
 		str[0] = '-';

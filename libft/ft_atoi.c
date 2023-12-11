@@ -6,11 +6,11 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:01:48 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/01 12:53:30 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/11 11:19:40 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	count;
 	int	sign;

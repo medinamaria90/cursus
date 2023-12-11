@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 17:46:28 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/11 11:43:30 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/10 19:27:09 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/11 11:41:09 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	else
-		return (c);
+	if (lst == NULL)
+		return ;
+	if (lst->content)
+	{
+		del(lst->content);
+	}
+	free (lst);
 }

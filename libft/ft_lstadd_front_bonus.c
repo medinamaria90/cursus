@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 10:34:19 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/09 11:47:39 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/07 14:13:45 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/11 11:41:04 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int	count;
-
-	if (lst == NULL)
-		return (0);
-	count = 0;
-	while (lst != NULL)
-	{
-		lst = lst->next;
-		count++;
-	}
-	return (count);
+	new -> next = *lst;
+	*lst = new;
 }
 /*
 int	main(void)
 {
-	char *str1 = "Hola";
-	char *str2 = "Que";
-	char *str3 = "Tal";
-	t_list *node1;
-	t_list *node2;
-	t_list *node3;
+	t_list	*root;
 
-	node1 = ft_lstnew(str1);
-	node2 = ft_lstnew(str2);
-	node3 = ft_lstnew(str3);
-	node2->next = node3;
-	node1->next = node2;
-	printf("%d\n", ft_lstsize(node1));
+	root = NULL;
+	ft_lstadd_front(&root, ft_lstnew("Hola "));
+	ft_lstadd_front(&root, ft_lstnew(" Que "));
+	ft_lstadd_front(&root, ft_lstnew(" tal "));
+	t_list *current = root;
+	while (current != NULL) 
+    {
+		printf("%s", (char *)current->content);
+		current = current->next;
+    }
 }
 */
