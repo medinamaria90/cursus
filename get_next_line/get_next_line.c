@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:16:36 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/14 21:41:24 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:11:29 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,19 @@ char *ft_read_line(char *buffer, int bytes, char **old_buffer)
 	char		*new_buffer;
 	char		*joint_buffer;
 	size_t		old_buffer_size;
-	
+	static	int	written;
+	//printf("at the beggining of read line\n");
 	//printf("Beg Buffer -- %s\nBeg Old Buffer -- %s\n", buffer, *old_buffer);
 	old_buffer_size = ft_strlen(*old_buffer);
 	if (bytes == 0)
+	{
+		if (written == 0)
+			return (NULL);
+		if (old_buffer_size == 0)
+			return (ft_strdup(""));
 		return(strdup(*old_buffer));
+	}
+	written = 1;
 	new_buffer = (char *)malloc(sizeof(char) * (bytes + 1));
 	ft_strlcpy(new_buffer, buffer, bytes + 1);
 	if (old_buffer_size > 0)
@@ -106,6 +114,7 @@ char *ft_read_file(int fd, char *buffer, size_t buff_size)
 	{
 		return(NULL);
 	}
+	//printf("Before the line\n");
 	line = ft_divide_line(&old_buffer);
 	if (line != NULL)
 		return (line);
@@ -199,6 +208,10 @@ int main(void)
         line_number++;
     }
 
+    return (0);
+}
+*/
+/*
 	line = get_next_line(file_descriptor);
 	printf("Line 1: %s\n", line);
 	char *line1 = get_next_line(file_descriptor) ;
@@ -208,6 +221,4 @@ int main(void)
 	char *line3 = get_next_line(file_descriptor);
 	printf("Line 4: %s\n", line3);
     close(file_descriptor);
-    return (0);
-}
-*/
+	*/
