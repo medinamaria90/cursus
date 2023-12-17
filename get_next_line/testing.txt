@@ -1,11 +1,4 @@
-Hola soy María
-Tengo 33 años y estudio en 42.
-Ahora voy a hacer pruebas, con líneas de distinto tamaño.
-Estoy creando una funcion ft_next_line. Aun no se bien el enfoque, pero hay varios asuntos que parecen importantes.
-Tengo que utilizar variables estáticas, para que no mueran cuando acabe la funcion.
-Creo que una variable estática es algo muy parecido al global de python, pero tengo que investigarlo mejor.
-Esta línea será especialmente larga, pues estoy haciendo pruebas de distintos tamaños. Pero a lo que iba. Más cosas interesantes. Estoy pensando crear una estructura, pero la verdad es que ahora mismo no entiendo la ventaja entre crear una estructura y no hacerlo. 
-Es decir. Realmente, qué necesito? Necesito empezar a leer bytes e irlos guardando en un str, hasta encontrar un salto de línea, que puede estar en el byte 3, o en el 1000.
-No se cuán largas van a ser las lineas. ¿Esto significa algo? Pues sí. Significa que Quizás debo, primero, contar el tamaño de la linea primero, y, una vez lo tenga, quizás puedo resetear a la posición de antes para guardar los datos en el buffer. Así podía asignar tamaño con Malloc. Pero el problema es que, mientras leo, escribo en el buffer.
-Quizás, dado que el tamaño del buffer es una variable, podría crear strings con el tamaño del buffer. Y lo voy guardando ahí. Pero qué pasa si la linea no ha terminado y el buffer si? Debería crear otra str, para guardar lo siguiente. Y luego otra. Así para siempre pero el problema es, ¿Cómo se de antemano cuántos str necesito? Y la norminette me obliga a crear todos los str que vaya a necesitar al principio del archivo. 
-Quizás es aqui donde una array de str puede ayudarme. Cada vez que el buffer se agote, el str resultante se añade al array de str. Al final, los concatenamos todos y lo metemos en un str final, del cual ya sabemos el tamaño. Esto es equivalente a una estructura en la que todos los elementos sean str? En fin. A seguir.
+
+Linea 
+
+qUE DICEEEEEEEEEEEEEEEEEEEEEES
