@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:01:45 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/18 09:15:02 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:36:46 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ char	*ft_strdup_len(const char *s, int len)
 		size = len;
 	str = (char *)malloc(size * sizeof(char));
 	if (!str)
+	{
+		//free((void *)(s));
 		return (NULL);
+	}
 	ft_strlcpy(str, s, size);
 	return (str);
 }
@@ -93,5 +96,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	ft_strlcpy(s3, s1, lens1 + 1);
 	ft_strlcpy(s3 + lens1, s2, lens2 + 1);
+	if (s1)
+		free((void *)(s1));
 	return (s3);
 }

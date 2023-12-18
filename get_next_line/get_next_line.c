@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:16:36 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/18 09:38:47 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:43:53 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	*ft_divide_line(char **container)
 char	*read_file(int fd, char **container)
 {
 	char	*buffer;
-	char	*temp;
 	int		bytes;
 
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -68,11 +67,9 @@ char	*read_file(int fd, char **container)
 		if (bytes == -1)
 			return (free_memory(buffer));
 		buffer[bytes] = '\0';
-		temp = ft_strjoin(*container, buffer);
-		if (!temp)
+		*container = ft_strjoin(*container, buffer);
+		if (!*container)
 			return (free_memory(buffer));
-		free(*container);
-		*container = temp;
 	}
 	free_memory(buffer);
 	return (buffer);
@@ -91,12 +88,15 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	if (read_file(fd, &container) == NULL)
-		return (NULL);
+		return (free_memory(container));
 	if (!container)
 		return (NULL);
 	line = ft_divide_line(&container);
 	if (!line)
+	{
+		free(container);
 		return (NULL);
+	}
 	if (ft_strlen(line) == 0 && !container)
 		return (free_memory(line));
 	return (line);
