@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:16:36 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/17 00:34:56 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/18 09:38:47 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,12 @@
 
 char	*free_memory(char *str)
 {
-	free (str);
+	if (str)
+	{
+		free (str);
+	}
 	str = NULL;
 	return (NULL);
-}
-
-char	*ft_strdup_len(const char *s, int len)
-{
-	char	*str;
-	int		size;	
-
-	if (s == NULL)
-		return (NULL);
-	if ((len == -1) || ((int)ft_strlen(s) < len))
-		size = ft_strlen(s) + 1;
-	else
-		size = len;
-	str = (char *)malloc(size * sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s, size);
-	return (str);
 }
 
 char	*ft_divide_line(char **container)
@@ -48,7 +33,8 @@ char	*ft_divide_line(char **container)
 		new_line = ft_strdup_len(*container, -1);
 		if (!new_line)
 			return (NULL);
-		free(*container);
+		if (*container)
+			free(*container);
 		*container = NULL;
 		return (new_line);
 	}
@@ -59,7 +45,8 @@ char	*ft_divide_line(char **container)
 	new_line = ft_strdup_len((*container), break_line + 1);
 	if (!new_line)
 		free_memory(aux_buff);
-	free (*container);
+	if (*container)
+		free (*container);
 	*container = aux_buff;
 	return (new_line);
 }
@@ -72,55 +59,46 @@ char	*read_file(int fd, char **container)
 
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (buffer == NULL)
-		return (NULL);
+		return (free_memory(buffer));
 	bytes = 1;
 	buffer[0] = 0;
 	while (!ft_strchr(buffer, '\n') && bytes > 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
-		//printf ("bts:%d ", bytes);
-		if (bytes > 0)
-		{
-			//printf("Buffer is --> %s ", buffer);
-			buffer[bytes] = '\0';
-			//printf("Buffer is --> %s ", buffer);
-			temp = ft_strjoin(*container, buffer);
-			if (!temp)
-				return (free_memory(buffer));
-			free(*container);
-			*container = temp;
-		}
+		if (bytes == -1)
+			return (free_memory(buffer));
+		buffer[bytes] = '\0';
+		temp = ft_strjoin(*container, buffer);
+		if (!temp)
+			return (free_memory(buffer));
+		free(*container);
+		*container = temp;
 	}
-	if (bytes == -1)
-		return (free_memory(buffer));
+	free_memory(buffer);
 	return (buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	char		*buffer;
 	static char	*container;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
-		return (NULL);
-	buffer = read_file(fd, &container);
-	if (!buffer)
+	if (fd < 0 || BUFFER_SIZE < 1 || (read(fd, NULL, 0) < 0))
 	{
-		printf("buffer is null\n");
-		return (free_memory(container));
+		if (container)
+			free_memory(container);
+		container = NULL;
+		return (NULL);
 	}
+	if (read_file(fd, &container) == NULL)
+		return (NULL);
 	if (!container)
-		return (free_memory(buffer));
+		return (NULL);
 	line = ft_divide_line(&container);
 	if (!line)
-		return (free_memory(buffer));
-	free (buffer);
+		return (NULL);
 	if (ft_strlen(line) == 0 && !container)
-	{
-		free(container);
 		return (free_memory(line));
-	}
 	return (line);
 }
 

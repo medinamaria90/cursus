@@ -6,11 +6,29 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:01:45 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/16 18:03:08 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/18 09:15:02 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_strdup_len(const char *s, int len)
+{
+	char	*str;
+	int		size;	
+
+	if (s == NULL)
+		return (NULL);
+	if ((len == -1) || ((int)ft_strlen(s) < len))
+		size = ft_strlen(s) + 1;
+	else
+		size = len;
+	str = (char *)malloc(size * sizeof(char));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s, size);
+	return (str);
+}
 
 char	*ft_strchr(const char *s, int c)
 {

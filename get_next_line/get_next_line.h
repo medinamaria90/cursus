@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 17:53:56 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/16 17:57:17 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/18 09:18:13 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
+char	*ft_strdup_len(const char *s, int len);
 #endif
