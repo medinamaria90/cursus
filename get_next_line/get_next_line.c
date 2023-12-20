@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:16:36 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/19 13:54:42 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:25:55 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,38 +95,3 @@ char	*get_next_line(int fd)
 		return (free_memory(&line));
 	return (line);
 }
-
-/*
-int main(void) 
-{
-    int file_descriptor = open("testing1.txt", O_RDONLY);
-    if (file_descriptor == -1) 
-	{
-        perror("Error opening file");
-        return 1;
-    }
-
-    char *line;
-	int	line_number = 1;
-
-    while ((line = get_next_line(file_descriptor)) != NULL//
-	 && (line_number < 15)) 
-	{
-        printf("Line %d: %s\n", line_number, line);
-        line_number++;
-    }
-
-    return (0);
-}
-*/
-/*
-	line = get_next_line(file_descriptor);
-	printf("Line 1: %s\n", line);
-	char *line1 = get_next_line(file_descriptor) ;
-	printf("Line 2: %s\n", line1);
-	char *line2 = get_next_line(file_descriptor); 
-	printf("Line 3: %s\n", line2);
-	char *line3 = get_next_line(file_descriptor);
-	printf("Line 4: %s\n", line3);
-    close(file_descriptor);
-	*/

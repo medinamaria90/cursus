@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 18:01:45 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/19 13:53:38 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/20 10:56:06 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s3 = (char *)malloc(((lens1 + lens2) + 1) * sizeof(char));
 	if (!s3)
 	{
+		free((void *)(s1));
 		return (NULL);
 	}
 	ft_strlcpy(s3, s1, lens1 + 1);

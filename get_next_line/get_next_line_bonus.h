@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 17:53:56 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/19 14:30:36 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/20 14:01:39 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
