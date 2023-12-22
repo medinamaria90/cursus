@@ -6,81 +6,89 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:06:29 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/21 16:04:47 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:13:08 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include <limits.h>
+#include "ft_printf.h"
 
 int	ft_putchar(int c)
 {
 	write(1, &c, 1);
-	return(1);
+	return (1);
 }
 
 int	ft_putstr(char *str)
 {
 	int	n;
 
+	if (str == NULL)
+		return (ft_putstr("(null)"));
 	n = 0;
 	while (str[n])
 	{
 		write(1, &str[n], 1);
-		n++;		
+		n++;
 	}
-	return(n);
+	return (n);
 }
 
-size_t	ft_strlen(const char *str)
+int	ft_putnbr(int n)
 {
-	size_t	i;
+	int	bytes;
 
-	if (str == 0)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t n)
-{
-	size_t	count;
-
-	if (src == NULL)
-		return (-1);
-	count = 0;
-	while (count < n - 1 && src[count] && n != 0)
+	bytes = 0;
+	if (n == -2147483648)
 	{
-		if (src[count])
-			dest[count] = src[count];
-		else
-			dest[count] = '\0';
-		count ++;
+		write(1, "-2147483648", 11);
+		return (11);
 	}
-	if (n != 0)
-		dest[count] = '\0';
-	while (src[count] != '\0')
-		count++;
-	return (count);
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n = -n;
+		bytes += 1;
+	}
+	if (n >= 10)
+	{
+		bytes += ft_putnbr(n / 10);
+	}
+	bytes += ft_putchar(n % 10 + '0');
+	return (bytes);
 }
 
-char	*ft_strdup_len(const char *s, int len)
+int	ft_int_to_hex(unsigned long long int num, int mayus, int size)
 {
-	char	*str;
-	int		size;	
+	int	bytes;
 
-	if (s == NULL)
-		return (NULL);
-	if ((len == -1) || ((int)ft_strlen(s) < len))
-		size = ft_strlen(s) + 1;
+	bytes = 0;
+	while (num >= 16)
+	{
+		bytes += ft_int_to_hex(num / 16, mayus, size);
+		num = num % 16;
+	}
+	if (num > 9)
+	{
+		if (mayus == 0)
+			bytes += ft_putchar(num - 10 + 'a');
+		if (mayus == 1)
+			bytes += ft_putchar(num - 10 + 'A');
+	}
 	else
-		size = len;
-	str = (char *)malloc(size * sizeof(char));
-	if (!str)
+		bytes += ft_putchar(num + '0');
+	return (bytes);
+}
+
+int	ft_putnbr_big(unsigned int n)
+{
+	int	bytes;
+
+	bytes = 0;
+	if (n >= 10)
 	{
-		return (NULL);
+		bytes += ft_putnbr_big(n / 10);
 	}
-	ft_strlcpy(str, s, size);
-	return (str);
+	bytes += ft_putchar(n % 10 + '0');
+	return (bytes);
 }
