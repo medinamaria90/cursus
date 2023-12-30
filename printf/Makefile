@@ -1,34 +1,29 @@
 # Name of the library //
 NAME = libftprintf.a
-
 # Sources //
-SRCS = ft_printf.c ft_printf_utils.c
-
-# Objects //
+SRCS = ft_printf.c ft_int_to_hex.c ft_putchar.c ft_putnbr.c ft_putstr.c
 OBJS = $(SRCS:.c=.o)
 
-# Compile //
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra -g
+RM = rm -rf
+AR = ar crs
 
-# Aim of the program//
-all : $(NAME)
+all: $(OBJS) $(NAME)
 
-# RULES --> TARGET: DEPENDENCES --> TAB --> RECIPE (ACTIONS) //
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
-# RULE FOR CREATING THE OBJECTS
-$(OBJS): %.o : %.c ft_printf.h
+	$(AR) $(NAME) $(OBJS)
+
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Regla para limpiar los archivos objeto
+
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS)
 
-# Regla para limpiar todos los archivos generados (objetos y librería)
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
-# Regla para reconstruir todo el proyecto
 re: fclean all
+
+.PHONY: all clean fclean re

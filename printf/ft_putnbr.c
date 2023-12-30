@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 11:12:29 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/23 12:51:27 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/21 11:06:29 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/23 12:16:54 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-#include <stddef.h>
-#include <stdio.h>
-#include <stdint.h>
+int	ft_putnbr(int n)
+{
+	int	bytes;
 
-int	ft_printf(char const *str, ...);
-int	ft_int_to_hex(unsigned long long int num, int mayus, int size);
-int	ft_putstr(char *str);
-int	ft_putchar(int c);
-int	ft_putnbr(int n);
+	bytes = 0;
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return (11);
+	}
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n = -n;
+		bytes += 1;
+	}
+	if (n >= 10)
+	{
+		bytes += ft_putnbr(n / 10);
+	}
+	bytes += ft_putchar(n % 10 + '0');
+	return (bytes);
+}

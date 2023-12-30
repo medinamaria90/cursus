@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 11:12:29 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/23 12:51:27 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/23 11:47:30 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/23 12:08:37 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-#include <stddef.h>
-#include <stdio.h>
-#include <stdint.h>
+int	ft_putstr(char *str)
+{
+	int	n;
 
-int	ft_printf(char const *str, ...);
-int	ft_int_to_hex(unsigned long long int num, int mayus, int size);
-int	ft_putstr(char *str);
-int	ft_putchar(int c);
-int	ft_putnbr(int n);
+	if (str == NULL)
+		return (ft_putstr("(null)"));
+	n = 0;
+	while (str[n])
+	{
+		write(1, &str[n], 1);
+		n++;
+	}
+	return (n);
+}
