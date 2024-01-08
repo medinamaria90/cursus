@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:12:29 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/23 12:51:27 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:41:00 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <stdint.h>
 
 int	ft_printf(char const *str, ...);
-int	ft_int_to_hex(unsigned long long int num, int mayus, int size);
+int	ft_int_to_hex(unsigned long long int num, char mayus, int size);
 int	ft_putstr(char *str);
 int	ft_putchar(int c);
 int	ft_putnbr(int n);

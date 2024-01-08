@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 11:06:29 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/23 12:16:54 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:12:57 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,28 @@
 int	ft_putnbr(int n)
 {
 	int	bytes;
+	int	written;
 
 	bytes = 0;
 	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return (11);
-	}
+		return (write(1, "-2147483648", 11));
 	if (n < 0)
 	{
-		ft_putchar('-');
+		written = ft_putchar('-');
+		if (written == -1)
+			return (-1);
 		n = -n;
-		bytes += 1;
+		bytes += written;
 	}
 	if (n >= 10)
 	{
-		bytes += ft_putnbr(n / 10);
+		written = ft_putnbr(n / 10);
+		if (written == -1)
+			return (-1);
+		bytes += written;
 	}
-	bytes += ft_putchar(n % 10 + '0');
-	return (bytes);
+	written = ft_putchar(n % 10 + '0');
+	if (written == -1)
+		return (-1);
+	return (bytes + written);
 }

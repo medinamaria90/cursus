@@ -66,6 +66,10 @@ int	main(void)
 	printf("%p-%p-%p\n", (void *)LONG_MAX, (void *)0, (void *)INT_MAX);
 	ft_printf("%p-%p-%p\n",(void *)LONG_MAX,(void *)0,(void *)INT_MAX);
 
+	printf("Test11.2 \n");
+	printf("%p -> \n", NULL);
+	ft_printf("%p -> \n", NULL);
+
 	printf("Testing 12.0 --> -1\n");
 	printf("-1 is %x\n", -1);
 	ft_printf("-1 is %x\n", -1);
