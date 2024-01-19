@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:18:45 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/19 09:46:29 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:22:19 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_swap(t_stack **stack)
 	second->next = third;	
 }
 
-void	ft_rotate(t_stack **stack)
+void	ft_rrotate(t_stack **stack)
 {
 	t_stack	*lastnode;
 	t_stack	*secondlast;
@@ -42,7 +42,7 @@ void	ft_rotate(t_stack **stack)
 	secondlast->next = NULL;
 }
 
-void	ft_rrotate(t_stack **stack)
+void	ft_rotate(t_stack **stack)
 {
 	t_stack	*lastnode;
 	t_stack	*temp;
