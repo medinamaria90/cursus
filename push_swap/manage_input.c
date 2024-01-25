@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:25:06 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/19 09:45:56 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:19:09 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,78 @@ int ft_return_error(void)
 	return (1);
 }
 
-int	ft_str_to_int(char *str)
+
+int	ft_save_int(char *str, int *nbr)
 {
-	int	count;
-	int	sign;
-	int	nb;
+	int sign;
+	int count;
 
 	count = 0;
 	sign = 1;
+	*nbr = 0;
 	if (str[count] == '-' || str[count] == '+')
 	{
 		if (str[count] == '-')
 			sign *= -1;
 		count++;
 	}
-	nb = 0;
-	while (str[count] >= '0' && str[count] <= '9')
+	while(str[count])
 	{
-		nb = (str[count] - '0') + 10 * nb;
+		if (str[count] < '0' || str[count] > '9')
+			return (-1);
+		*nbr = (str[count] - '0') + 10 * (*nbr);
 		count++;
 	}
-	return (nb * sign);
+	*nbr = (*nbr) * sign;
+	return (1);
 }
 
-int	ft_save_int(char *str, int *i)
+int	ft_process_nbrs(char *input[], t_stack **stack_a)
 {
-	*i = 0;
-	if (str[*i] == '-' || str[*i] == '+')
-		(*i)++;
-	while(str[*i])
+	int n;
+	int	nbr;
+
+	n = 0;
+
+	while (input[n])
 	{
-		if (str[*i] > '9' || str[*i] < '0')
-			return (-1);
-		(*i)++;
+		if (ft_save_int(input[n], &nbr) == -1)
+			return (ft_return_error());
+		if (ft_add_node(nbr, stack_a) == -1)
+			return (ft_return_error());
+		n++;
 	}
-	*i = ft_str_to_int(str);
-	return (1);
+	return (n);
+}
+
+int	are_there_spaces(char *str)
+{
+	int	n;
+
+	n = 0;
+	while(str[n])
+	{
+		if (str[n] == ' ' || str[n] == '	')
+			return (1);
+		n++;
+	}
+	return (0);
+}
+
+int	process_input(char *input[], t_stack **stack_a)
+{
+	int n;
+	char **proc_input;
+	
+	n = 1;
+	if (are_there_spaces(input[n]))
+	{
+		proc_input = ft_split(input[1], ' ');
+		if (proc_input == NULL)
+			return (ft_return_error());
+		n = ft_process_nbrs(proc_input, stack_a);
+	}
+	else
+		n = ft_process_nbrs(&input[1], stack_a);
+	return (n);
 }

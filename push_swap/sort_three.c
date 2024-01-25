@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:30:01 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/19 11:38:04 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:13:32 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_order_stack(t_stack **stack)
 	int min_pos;
 
 	min_pos = ft_find_min(*stack, 1);
-	ft_best_movement(stack, min_pos - 1, ft_count_elements(*stack), 'a');
+	ft_best_movement(stack, min_pos - 1, count_elements(*stack), 'a');
 }
 
 void	ft_push_back(t_stack **stack_a, t_stack **stack_b)
@@ -27,8 +27,8 @@ void	ft_push_back(t_stack **stack_a, t_stack **stack_b)
 	//ft_print_stack(*stack_b, 'B');
 	while (*stack_b != NULL)
 	{
-		pos = ft_find_pos((*stack_b)->content, *stack_a, 'a');
-		ft_best_movement(stack_a, pos, ft_count_elements(*stack_a), 'a');
+		pos = find_destination((*stack_b)->content, *stack_a, 'a');
+		ft_best_movement(stack_a, pos, count_elements(*stack_a), 'a');
 		printf("pa\n");
 		ft_push(stack_a, stack_b, 1);
 		//ft_print_stack(*stack_a, 'A');

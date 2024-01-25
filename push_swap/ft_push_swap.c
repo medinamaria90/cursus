@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 11:00:57 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/19 11:38:44 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:16:44 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,63 +33,71 @@ int	ft_is_ordered(t_stack *a)
 	return (0);
 }
 
-void	ft_sort(t_stack **a, t_stack **b, int len_a)
+void	ft_sort(t_stack **stack_a, t_stack **stack_b, int len_a)
 {
-	int	min_cost_pos;
+	int	counter;
+	int	position;
+	t_stack *temp;
 	
-	if (len_a == 3)
-		ft_sort_three(a);
-	else if (len_a == 4)
+	if (len_a == 4)
 	{
 		printf("pb\n");
-		ft_push(b, a, 1);
+		ft_push(stack_b, stack_a, 1);
 		len_a--;
 	}
 	else if (len_a > 4)
 	{
-		printf("pb\n");
-		printf("pb\n");
-		ft_push(b, a, 2);
+		printf("pb\npb\n");
+		ft_push(stack_b, stack_a, 2);
 	}
-	while (ft_count_elements(*b) != 0)
+	while (count_elements(*stack_b) != 0)
 	{
-		if (ft_count_elements(*a) == 3)
+		if (count_elements(*stack_a) == 3)
 		{
-			ft_sort_three(a);
-			ft_push_back(a, b);
+			ft_sort_three(stack_a);
+			ft_push_back(stack_a, stack_b);
 		}
 		else
 		{
-			min_cost_pos = ft_cheapest_movement(a, b);
-			ft_move(a, b, min_cost_pos, (*a)->movement);
+			position = find_cheapest_movement(*stack_a, *stack_b);
+			temp = *stack_a;
+			counter = 0;
+			while (temp && position > counter)
+			{
+				temp = temp->next;
+				counter++;
+			}
+			//printf("After the while\n");
+			//printf("item to move %d\n", position);
+			//printf("place to move %d\n", temp->place_to_go);
+			//printf("Movement %d\n", temp->movement);
+			ft_move(stack_a, stack_b, position, (temp)->movement);
 		}
+			
 	}
 }
 
 int	main(int argc, char *argv[])
 {
 	int 	n;
-	int		i;
 	t_stack *stack_a;
 	t_stack *stack_b;
 
+	if (argc == 1)
+		return (ft_return_error());
 	stack_a = NULL;
 	stack_b = NULL;
-	n = 1;
-	while (argv[n])
-	{
-		if (ft_save_int(argv[n], &i) == -1)
-			return (ft_return_error());
-		if (ft_add_node(i, &stack_a) == -1)
-			return (ft_return_error());
-		n++;
-	}
-	if (n - 1 == 1)
+	n = process_input(argv, &stack_a);
+	if (n == -1)
+		return (1);
+	else if (n == 1)
 		return (0);
-	else if (n - 1 == 2 && ft_is_ordered(stack_a) == 1)
+	else if (n == 2 && ft_is_ordered(stack_a) == 1)
 		ft_swap(&stack_a);
+	else if (n == 3 && ft_is_ordered(stack_a) == 1)
+		ft_sort_three(&stack_a);
 	else if (ft_is_ordered(stack_a) == 1)
-		ft_sort(&stack_a, &stack_b, n - 1);
+		ft_sort(&stack_a, &stack_b, n);
 	//printf("Final result:\n");
 	//ft_print_stack(stack_a, 'A');
 	(void) argc;

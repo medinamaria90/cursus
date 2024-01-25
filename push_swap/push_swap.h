@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:45:18 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/19 09:46:47 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:14:10 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@ typedef struct s_stack {
 	struct s_stack	*next;
 } t_stack;
 
+//SPLIT//
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	**ft_split(char const *s, char c);
 //PUSH SWAP//
 void 	ft_print_stack(t_stack *stack, int name);
 int		ft_is_ordered(t_stack *a);
 void	ft_sort(t_stack **a, t_stack **b, int len_a);
 //MANAGE INPUT//
+int		process_input(char *input[], t_stack **stack_a);
+int		are_there_spaces(char *str);
 int		ft_str_to_int(char *str);
 int		ft_save_int(char *str, int *i);
 int 	ft_return_error(void);
@@ -43,9 +48,9 @@ void	ft_swap(t_stack **stack);
 void	ft_rotate(t_stack **stack);
 void	ft_rrotate(t_stack **stack);
 //CALCULATIONS//
-int		ft_count_elements(t_stack *stack);
+int		count_elements(t_stack *stack);
 int 	ft_cost_element(t_stack *a, t_stack *b, int pos_a, int a_value);
-int	ft_cheapest_movement(t_stack **a, t_stack **b);
+int		find_cheapest_movement(t_stack *a, t_stack *b);
 //MOVEMENTS//
 void 	ft_best_movement(t_stack **stack, int pos, int len, int name);
 void	ft_reverse_rotate_al(t_stack **a, t_stack **b, int pos_a, int pos_b);
@@ -59,4 +64,4 @@ int		ft_find_max(t_stack *stack, int to_return);
 int		ft_find_min(t_stack *stack, int to_return);
 int		ft_find_below(int elm, t_stack *stack);
 int		ft_is_smallest(int elm, t_stack *stack);
-int		ft_find_pos(int elm, t_stack *stack, int dest);
+int		find_destination(int elm, t_stack *stack, int dest);
