@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:39:21 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 21:09:52 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:08:29 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ int	find_destination(int elm, t_stack *stack, int dest)
 {
 	int	pos;
 
-	//ft_print_stack(stack, dest);
-	//printf("DESTINATION FOR ----- %d ------\n", elm);
 	pos = 0;
 	if (dest == 'b')
 	{

@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 11:00:57 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 21:16:44 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:19:30 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,12 @@ int	ft_is_ordered(t_stack *a)
 	return (0);
 }
 
-void	ft_sort(t_stack **stack_a, t_stack **stack_b, int len_a)
+void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	counter;
 	int	position;
 	t_stack *temp;
-	
-	if (len_a == 4)
-	{
-		printf("pb\n");
-		ft_push(stack_b, stack_a, 1);
-		len_a--;
-	}
-	else if (len_a > 4)
-	{
-		printf("pb\npb\n");
-		ft_push(stack_b, stack_a, 2);
-	}
+
 	while (count_elements(*stack_b) != 0)
 	{
 		if (count_elements(*stack_a) == 3)
@@ -67,13 +56,29 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b, int len_a)
 				temp = temp->next;
 				counter++;
 			}
-			//printf("After the while\n");
-			//printf("item to move %d\n", position);
-			//printf("place to move %d\n", temp->place_to_go);
-			//printf("Movement %d\n", temp->movement);
 			ft_move(stack_a, stack_b, position, (temp)->movement);
-		}
-			
+		}	
+	}
+}
+void first_movements(t_stack **stack_a, t_stack **stack_b, int n)
+{
+	if (n == 2 && ft_is_ordered(*stack_a) == 1)
+	{
+		printf("sa\n");
+		ft_swap(stack_a);
+	}
+	else if (n == 3 && ft_is_ordered(*stack_a) == 1)
+		ft_sort_three(stack_a);
+	if (n == 4)
+	{
+		printf("pb\n");
+		ft_push(stack_b, stack_a, 1);
+		n--;
+	}
+	else if (n > 4)
+	{
+		printf("pb\npb\n");
+		ft_push(stack_b, stack_a, 2);
 	}
 }
 
@@ -92,12 +97,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	else if (n == 1)
 		return (0);
-	else if (n == 2 && ft_is_ordered(stack_a) == 1)
-		ft_swap(&stack_a);
-	else if (n == 3 && ft_is_ordered(stack_a) == 1)
-		ft_sort_three(&stack_a);
-	else if (ft_is_ordered(stack_a) == 1)
-		ft_sort(&stack_a, &stack_b, n);
+	first_movements(&stack_a, &stack_b, n);
+	if (ft_is_ordered(stack_a) == 1)
+		ft_sort(&stack_a, &stack_b);
 	//printf("Final result:\n");
 	//ft_print_stack(stack_a, 'A');
 	(void) argc;

@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:45:18 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 17:14:10 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:18:28 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**ft_split(char const *s, char c);
 //PUSH SWAP//
 void 	ft_print_stack(t_stack *stack, int name);
 int		ft_is_ordered(t_stack *a);
-void	ft_sort(t_stack **a, t_stack **b, int len_a);
+void	ft_sort(t_stack **a, t_stack **b);
 //MANAGE INPUT//
 int		process_input(char *input[], t_stack **stack_a);
 int		are_there_spaces(char *str);
@@ -49,7 +49,7 @@ void	ft_rotate(t_stack **stack);
 void	ft_rrotate(t_stack **stack);
 //CALCULATIONS//
 int		count_elements(t_stack *stack);
-int 	ft_cost_element(t_stack *a, t_stack *b, int pos_a, int a_value);
+int 	calculate_cost(t_stack *a, t_stack *b, int pos_a, int a_value);
 int		find_cheapest_movement(t_stack *a, t_stack *b);
 //MOVEMENTS//
 void 	ft_best_movement(t_stack **stack, int pos, int len, int name);
