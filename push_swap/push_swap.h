@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:45:18 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 22:18:28 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:42:00 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 //PUSH SWAP//
 void 	ft_print_stack(t_stack *stack, int name);
-int		ft_is_ordered(t_stack *a);
+int		is_ordered(t_stack *a);
 void	ft_sort(t_stack **a, t_stack **b);
 //MANAGE INPUT//
 int		process_input(char *input[], t_stack **stack_a);

@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:30:01 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 17:13:32 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:41:52 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_push_back(t_stack **stack_a, t_stack **stack_b)
 void	ft_sort_three(t_stack **stack)
 {
 	//printf("going to order\n");
-	if (ft_is_ordered(*stack) == 0)
+	if (is_ordered(*stack) == 1)
 		return ;
 	else
 	{
@@ -54,7 +54,7 @@ void	ft_sort_three(t_stack **stack)
 			ft_rotate(stack);
 		}
 	}
-	if (ft_is_ordered(*stack) == 1)
+	if (is_ordered(*stack) == 0)
 	{
 		printf("sa\n");
 		ft_swap(stack);

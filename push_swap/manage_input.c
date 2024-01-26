@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:25:06 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 22:24:04 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:04:05 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int	ft_save_int(char *str, int *nbr)
 	{
 		if (str[count] < '0' || str[count] > '9')
 			return (-1);
+		if (((2147483647 - (str[count] - '0')) / 10) < *nbr)
+		{
+            return (-1);
+		}
 		*nbr = (str[count] - '0') + 10 * (*nbr);
 		count++;
 	}
