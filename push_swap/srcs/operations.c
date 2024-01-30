@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:18:45 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/29 12:28:28 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:51:34 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	ft_rotate(t_stack **stack)
 void	ft_push(t_stack **dst, t_stack **src, int times)
 {
 	t_stack	*to_push;
-	
 	while (times > 0)
 	{
 		to_push = *src;

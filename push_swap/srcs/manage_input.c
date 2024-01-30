@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:25:06 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 22:24:04 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:28:28 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int ft_return_error(void)
 {
 	printf("%s", "Error\n");
-	return (1);
+	return (-1);
 }
 
 
