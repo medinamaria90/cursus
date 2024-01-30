@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 11:00:57 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/29 11:49:01 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:24:39 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 	{
 		if (count_elements(*stack_a) == 3)
 		{
+			ft_print_stack(*stack_a, 'a');
+			ft_print_stack(*stack_b, 'b');
 			ft_sort_three(stack_a);
 			ft_push_back(stack_a, stack_b);
 		}
