@@ -6,11 +6,22 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:18:45 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/19 11:22:19 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:28:28 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	is_ordered(t_stack *a)
+{
+	while (a -> next)
+	{
+		if (a->content > a->next->content)
+			return (1);	
+		a = a->next;			
+	}
+	return (0);
+}
 
 void	ft_swap(t_stack **stack)
 {

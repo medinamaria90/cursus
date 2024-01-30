@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.c                                     :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 11:00:57 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 22:19:30 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:49:01 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@ void ft_print_stack(t_stack *stack, int name)
         stack = stack->next;
     }
    printf("\n");
-}
-
-int	ft_is_ordered(t_stack *a)
-{
-	while (a -> next)
-	{
-		if (a->content > a->next->content)
-			return (1);	
-		a = a->next;			
-	}
-	return (0);
 }
 
 void	ft_sort(t_stack **stack_a, t_stack **stack_b)
@@ -62,12 +51,12 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 }
 void first_movements(t_stack **stack_a, t_stack **stack_b, int n)
 {
-	if (n == 2 && ft_is_ordered(*stack_a) == 1)
+	if (n == 2 && is_ordered(*stack_a) == 1)
 	{
 		printf("sa\n");
 		ft_swap(stack_a);
 	}
-	else if (n == 3 && ft_is_ordered(*stack_a) == 1)
+	else if (n == 3 && is_ordered(*stack_a) == 1)
 		ft_sort_three(stack_a);
 	if (n == 4)
 	{
@@ -98,7 +87,7 @@ int	main(int argc, char *argv[])
 	else if (n == 1)
 		return (0);
 	first_movements(&stack_a, &stack_b, n);
-	if (ft_is_ordered(stack_a) == 1)
+	if (is_ordered(stack_a) == 1)
 		ft_sort(&stack_a, &stack_b);
 	//printf("Final result:\n");
 	//ft_print_stack(stack_a, 'A');

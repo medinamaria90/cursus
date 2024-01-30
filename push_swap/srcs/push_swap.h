@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:45:18 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 22:18:28 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:49:22 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,20 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#define BUFFER_SIZE 42
 
+//BONUS//
+int		ft_strncmp(char const *s1, const char *s2, unsigned int n);
+char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(const char *str);
+size_t	ft_strlcpy(char *dest, const char *src, size_t n);
+char	*ft_strchr(const char *s, int c);
+char	*get_next_line(int fd);
+char	*ft_strdup_len(const char *s, int len);
+
+//PUSH_SWAP//
 typedef struct s_stack {
 	int				content;
 	int				cost;
@@ -28,7 +41,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 //PUSH SWAP//
 void 	ft_print_stack(t_stack *stack, int name);
-int		ft_is_ordered(t_stack *a);
 void	ft_sort(t_stack **a, t_stack **b);
 //MANAGE INPUT//
 int		process_input(char *input[], t_stack **stack_a);
@@ -43,6 +55,7 @@ void	ft_add_node_back(t_stack **lst, t_stack *new);
 int		ft_add_node(int content, t_stack **lst);
 t_stack	*ft_lastnode(t_stack *lst);
 //OPERATIONS//
+int		is_ordered(t_stack *a);
 void	ft_push(t_stack **dst, t_stack **src, int times);
 void	ft_swap(t_stack **stack);
 void	ft_rotate(t_stack **stack);
