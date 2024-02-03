@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 17:45:48 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/19 09:46:14 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 17:06:13 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_add_node_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*templst;
+
 	if (*lst == NULL)
 	{
 		*lst = new;
@@ -39,7 +40,7 @@ void	ft_add_node_front(t_stack **lst, t_stack *new)
 
 t_stack	*ft_new_node(int content)
 {
-	t_stack *new;
+	t_stack	*new;
 
 	new = malloc(sizeof(t_stack));
 	if (new == NULL)
@@ -55,7 +56,7 @@ int	ft_add_node(int content, t_stack **lst)
 	t_stack	*temp;
 
 	temp = *lst;
-	while(temp != NULL)
+	while (temp != NULL)
 	{
 		if (temp->content == content)
 			return (-1);
@@ -67,6 +68,7 @@ int	ft_add_node(int content, t_stack **lst)
 	ft_add_node_back(lst, new);
 	return (0);
 }
+
 t_stack	*ft_lastnode(t_stack *lst)
 {
 	if (lst == NULL)

@@ -6,13 +6,13 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:39:21 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 22:08:29 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:09:32 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_find_min(t_stack *stack, int to_return)
+int	ft_find_min(t_stack *stack, int pos_or_value)
 {
 	int		min;
 	int		min_pos;
@@ -31,13 +31,12 @@ int	ft_find_min(t_stack *stack, int to_return)
 		count++;
 		stack = stack->next;
 	}
-	if (to_return == 1)
+	if (pos_or_value == 1)
 		return (min_pos);
 	return (min);
-	
 }
 
-int	ft_find_max(t_stack *stack, int to_return)
+int	ft_find_max(t_stack *stack, int pos_or_value)
 {
 	int		max;
 	int		max_post;
@@ -56,7 +55,7 @@ int	ft_find_max(t_stack *stack, int to_return)
 		count++;
 		stack = stack->next;
 	}
-	if (to_return == 1)
+	if (pos_or_value == 1)
 		return (max_post);
 	return (max);
 }
@@ -65,22 +64,22 @@ int	ft_find_above(int elm, t_stack *stack)
 {
 	int		pos;
 	int		above_pos;
-	int		above_value;
+	int		above_val;
 
 	above_pos = 0;
 	pos = 0;
-	above_value = elm;
+	above_val = elm;
 	while (stack != NULL)
 	{
-		if (elm < stack->content && (above_value == elm || stack->content < above_value))
+		if (elm < stack->content && (above_val == elm
+				|| stack->content < above_val))
 		{
 			above_pos = pos;
-			above_value = stack->content;
+			above_val = stack->content;
 		}
-		stack= stack->next;
+		stack = stack->next;
 		pos++;
 	}
-
 	return (above_pos);
 }
 
@@ -100,7 +99,7 @@ int	ft_find_below(int elm, t_stack *stack)
 			below_pos = pos;
 			below_value = stack->content;
 		}
-		stack= stack->next;
+		stack = stack->next;
 		pos++;
 	}
 	return (below_pos);

@@ -6,93 +6,108 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 11:00:57 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/30 13:24:39 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 20:59:00 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_print_stack(t_stack *stack, int name) 
+void	calc_movement_costs(t_stack *stack_a, t_stack *stack_b)
 {
-   printf("Stack %c: ", name);
-    while (stack != NULL) {
-        printf("%d ", stack->content);
-        stack = stack->next;
-    }
-   printf("\n");
+	int		pos_a;
+	t_stack	*temp;
+
+	temp = stack_a;
+	pos_a = 0;
+	while (temp != NULL)
+	{
+		temp->go_to = find_destination(temp->content, stack_b, 'b');
+		best_movement(stack_a, pos_a, stack_b, temp->go_to);
+		temp = temp->next;
+		pos_a++;
+	}
+}
+
+void	get_cheapest(t_stack *stack_a, int *cheap_pos, int *movement)
+{
+	int	cost;
+	int	pos;
+
+	cost = stack_a->cost + 1;
+	pos = 0;
+	while (stack_a)
+	{
+		if (stack_a->cost < cost)
+		{
+			cost = stack_a->cost;
+			*cheap_pos = pos;
+			*movement = stack_a->movement;
+		}
+		stack_a = stack_a->next;
+		pos++;
+	}
 }
 
 void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int	counter;
-	int	position;
-	t_stack *temp;
+	int		position;
+	int		movement;
 
 	while (count_elements(*stack_b) != 0)
 	{
 		if (count_elements(*stack_a) == 3)
 		{
-			ft_print_stack(*stack_a, 'a');
-			ft_print_stack(*stack_b, 'b');
 			ft_sort_three(stack_a);
 			ft_push_back(stack_a, stack_b);
 		}
 		else
 		{
-			position = find_cheapest_movement(*stack_a, *stack_b);
-			temp = *stack_a;
-			counter = 0;
-			while (temp && position > counter)
-			{
-				temp = temp->next;
-				counter++;
-			}
-			ft_move(stack_a, stack_b, position, (temp)->movement);
-		}	
+			calc_movement_costs(*stack_a, *stack_b);
+			get_cheapest(*stack_a, &position, &movement);
+			ft_move(stack_a, stack_b, position, movement);
+		}
 	}
 }
-void first_movements(t_stack **stack_a, t_stack **stack_b, int n)
+
+void	first_movements(t_stack **stack_a, t_stack **stack_b, int n)
 {
 	if (n == 2 && is_ordered(*stack_a) == 1)
 	{
-		printf("sa\n");
+		write(1, "sa\n", 3);
 		ft_swap(stack_a);
 	}
 	else if (n == 3 && is_ordered(*stack_a) == 1)
 		ft_sort_three(stack_a);
 	if (n == 4)
 	{
-		printf("pb\n");
+		write(1, "pb\n", 3);
 		ft_push(stack_b, stack_a, 1);
-		n--;
 	}
 	else if (n > 4)
 	{
-		printf("pb\npb\n");
+		write(1, "pb\npb\n", 6);
 		ft_push(stack_b, stack_a, 2);
 	}
 }
 
 int	main(int argc, char *argv[])
 {
-	int 	n;
-	t_stack *stack_a;
-	t_stack *stack_b;
+	int		n;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (argc == 1)
-		return (ft_return_error());
+		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
 	n = process_input(argv, &stack_a);
 	if (n == -1)
 		return (1);
-	else if (n == 1)
-		return (0);
-	first_movements(&stack_a, &stack_b, n);
 	if (is_ordered(stack_a) == 1)
+		first_movements(&stack_a, &stack_b, n);
+	if (is_ordered(stack_a) == 1 || count_elements(stack_b) != 0)
 		ft_sort(&stack_a, &stack_b);
-	//printf("Final result:\n");
-	//ft_print_stack(stack_a, 'A');
-	(void) argc;
+	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (0);
 }

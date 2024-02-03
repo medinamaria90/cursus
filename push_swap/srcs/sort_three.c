@@ -6,57 +6,60 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:30:01 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/29 12:07:27 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:08:05 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_order_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
-	int min_pos;
+	t_stack	*temp;
 
-	min_pos = ft_find_min(*stack, 1);
-	ft_best_movement(stack, min_pos - 1, count_elements(*stack), 'a');
+	while (*stack)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
 }
 
 void	ft_push_back(t_stack **stack_a, t_stack **stack_b)
 {
 	int	pos;
-	//ft_print_stack(*stack_a, 'A');
-	//ft_print_stack(*stack_b, 'B');
+	int	min_pos;
+
 	while (*stack_b != NULL)
 	{
 		pos = find_destination((*stack_b)->content, *stack_a, 'a');
-		ft_best_movement(stack_a, pos, count_elements(*stack_a), 'a');
-		printf("pa\n");
+		move_diff_directions(stack_a, pos, count_elements(*stack_a), 'a');
+		write(1, "pa\n", 3);
 		ft_push(stack_a, stack_b, 1);
-		//ft_print_stack(*stack_a, 'A');
 	}
-	ft_order_stack(stack_a);
+	min_pos = ft_find_min(*stack_a, 1);
+	move_diff_directions(stack_a, min_pos - 1, count_elements(*stack_a), 'a');
 }
 
 void	ft_sort_three(t_stack **stack)
 {
-	//printf("going to order\n");
 	if (is_ordered(*stack) == 0)
 		return ;
 	else
 	{
-		if(ft_find_max(*stack, 1) == 2)
+		if (ft_find_max(*stack, 1) == 2)
 		{
-			printf("rra\n");
+			write(1, "rra\n", 4);
 			ft_rrotate(stack);
 		}
-		if(ft_find_max(*stack, 1) == 1)
+		if (ft_find_max(*stack, 1) == 1)
 		{
-			printf("ra\n");
+			write(1, "ra\n", 3);
 			ft_rotate(stack);
 		}
 	}
 	if (is_ordered(*stack) == 1)
 	{
-		printf("sa\n");
+		write(1, "sa\n", 3);
 		ft_swap(stack);
 	}
 }

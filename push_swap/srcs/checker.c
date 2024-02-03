@@ -6,32 +6,21 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:23:39 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/30 12:53:39 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:04:39 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_print_stack(t_stack *stack, int name) 
-{
-   printf("Stack %c: ", name);
-    while (stack != NULL) {
-        printf("%d ", stack->content);
-        stack = stack->next;
-    }
-   printf("\n");
-}
-
 void	check_if_ordered(t_stack *stack_a)
 {
 	if (is_ordered(stack_a) == 0)
-		printf("OK\n");
+		write(1, "OK\n", 3);
 	else
-		printf("KO\n");
-	//printf("\n%d\n", is_ordered(stack_a));
+		write(1, "KO\n", 3);
 }
 
-void	rotate_instruction (t_stack **stack_a, t_stack **stack_b, int rotation)
+void	rotate_instruction(t_stack **stack_a, t_stack **stack_b, int rotation)
 {
 	if (rotation == 1)
 	{
@@ -69,12 +58,11 @@ void	do_movement(char *line, t_stack **stack_a, t_stack **stack_b)
 		rotate_instruction(stack_a, stack_b, 2);
 }
 
-
 int	main(int argc, char *argv[])
 {
-	char *instruction;
-	t_stack *stack_a;
-	t_stack *stack_b;
+	char	*instruction;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (argc == 1)
 		return (1);
@@ -82,18 +70,12 @@ int	main(int argc, char *argv[])
 	stack_b = NULL;
 	if (process_input(argv, &stack_a) == -1)
 		return (1);
-	instruction = NULL;
 	instruction = get_next_line(0);
-	if (!instruction)
-		return (1);
-	while (1)
+	while (instruction != NULL)
 	{
 		do_movement(instruction, &stack_a, &stack_b);
 		free(instruction);
 		instruction = get_next_line(0);
-		if (!instruction)
-			break ;
 	}
-	check_if_ordered(stack_a);
 	return (0);
 }
