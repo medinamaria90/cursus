@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:45:18 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/03 21:10:11 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:19:22 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ int		find_destination(int elm, t_stack *stack, int dest);
 //SPLIT UTILS//
 size_t	ft_strlen2(const char *str);
 //OTHER UTILS//
-void	free_stack(t_stack **stack);
 int		ft_strncmp(char const *s1, const char *s2, unsigned int n);
+void	free_stack(t_stack **stack);

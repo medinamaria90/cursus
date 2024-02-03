@@ -6,23 +6,11 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:30:01 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/03 21:08:05 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:19:00 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*temp;
-
-	while (*stack)
-	{
-		temp = *stack;
-		*stack = (*stack)->next;
-		free(temp);
-	}
-}
 
 void	ft_push_back(t_stack **stack_a, t_stack **stack_b)
 {

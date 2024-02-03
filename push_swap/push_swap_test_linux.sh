@@ -3490,7 +3490,7 @@ else
 	printf "${RED}1. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3504,7 +3504,7 @@ else
 	printf "${RED}2. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3518,7 +3518,7 @@ else
 	printf "${RED}3. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3532,7 +3532,7 @@ else
 	printf "${RED}4. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3546,7 +3546,7 @@ else
 	printf "${RED}5. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3560,7 +3560,7 @@ else
 	printf "${RED}6. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3574,7 +3574,7 @@ else
 	printf "${RED}7. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3588,7 +3588,7 @@ else
 	printf "${RED}8. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3602,7 +3602,7 @@ else
 	printf "${RED}9. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3616,7 +3616,7 @@ else
 	printf "${RED}10. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3630,7 +3630,7 @@ else
 	printf "${RED}11. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -3644,7 +3644,7 @@ else
 	printf "${RED}12. [KO]${DEF_COLOR}";
 fi
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}\n";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}\n";
@@ -4136,7 +4136,7 @@ if [ $cont -eq 5 ]; then
 
 R=$(valgrind --log-fd=1 ./push_swap $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
 ((cont4++))
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}$cont3 [MEMORY OK] ${DEF_COLOR}\n";
   ((res_3++))
 else
@@ -4768,7 +4768,7 @@ printf ${MAGENTA}"\n------------------------------------------------------------
 ARG="2 1 3";
 S=$(echo -e "sa" | ./checker_linux $ARG)
 R=$(echo -e "sa" | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}SA 1.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}1.[KO]${DEF_COLOR}\n";
@@ -4777,7 +4777,7 @@ fi
 ARG="2 1 3";
 S=$(echo -e "sa\nsa\nsa" | ./checker_linux $ARG)
 R=$(echo -e "sa\nsa\nsa" | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}2.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}2.[KO]${DEF_COLOR}\n";
@@ -4786,7 +4786,7 @@ fi
 ARG="2 1 3";
 S=$(echo -e "sa\nsa" | ./checker_linux $ARG)
 R=$(echo -e "sa\nsa" | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}2.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}2.[KO]${DEF_COLOR}\n";
@@ -4800,7 +4800,7 @@ printf ${MAGENTA}"\n------------------------------------------------------------
 ARG="2 1";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}1.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}1.[KO]${DEF_COLOR}\n";
@@ -4809,7 +4809,7 @@ fi
 ARG="2 1 3";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}2.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}2.[KO]${DEF_COLOR}\n";
@@ -4818,7 +4818,7 @@ fi
 ARG="1 3 2";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}3.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}3.[KO]${DEF_COLOR}\n";
@@ -4827,7 +4827,7 @@ fi
 ARG="2 3 1";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}4.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}4.[KO]${DEF_COLOR}\n";
@@ -4836,7 +4836,7 @@ fi
 ARG="3 2 1";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}5.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}5.[KO]${DEF_COLOR}\n";
@@ -4845,7 +4845,7 @@ fi
 ARG="3 1 2";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}6 6 6.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}6.[KO]${DEF_COLOR}\n";
@@ -4855,7 +4855,7 @@ fi
 ARG="4 3 2 1";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}7 7 7.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}7.[KO]${DEF_COLOR}\n";
@@ -4864,7 +4864,7 @@ fi
 ARG="4 2 1 3";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}8 8 8.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}8.[KO]${DEF_COLOR}\n";
@@ -4873,7 +4873,7 @@ fi
 ARG="4 3 1 2";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}9 9 9.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}9.[KO]${DEF_COLOR}\n";
@@ -4882,7 +4882,7 @@ fi
 ARG="3 2 1 4";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}10. THE LAST [OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}10.[KO]${DEF_COLOR}\n";
@@ -4895,7 +4895,7 @@ printf ${MAGENTA}"\n------------------------------------------------------------
 ARG="2 1 3 4 5";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}1.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}1.[KO]${DEF_COLOR}\n";
@@ -4904,7 +4904,7 @@ fi
 ARG="5 4 3 2 1";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}2.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}2.[KO]${DEF_COLOR}\n";
@@ -4913,7 +4913,7 @@ fi
 ARG="5 4 1 2 3";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}3.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}3.[KO]${DEF_COLOR}\n";
@@ -4922,7 +4922,7 @@ fi
 ARG="5 4 3 1 2";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}4.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}4.[KO]${DEF_COLOR}\n";
@@ -4931,7 +4931,7 @@ fi
 ARG="4 5 3 1 2";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}5.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}5.[KO]${DEF_COLOR}\n";
@@ -4940,7 +4940,7 @@ fi
 ARG="3 2 1 5 4";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}6.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}6.[KO]${DEF_COLOR}\n";
@@ -4950,7 +4950,7 @@ fi
 ARG="1 2 3 5 4";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}7.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}7.[KO]${DEF_COLOR}\n";
@@ -4959,7 +4959,7 @@ fi
 ARG="2 1 4 5 3";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}8.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}8.[KO]${DEF_COLOR}\n";
@@ -4968,7 +4968,7 @@ fi
 ARG="1 3 2 5 4";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}9.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}9.[KO]${DEF_COLOR}\n";
@@ -4977,7 +4977,7 @@ fi
 ARG="2 3 4 5 1";
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}10.[OK] ${DEF_COLOR}\n";
 else
 	printf "${RED}10.[KO]${DEF_COLOR}\n";
@@ -5005,7 +5005,7 @@ do
 ARG=$(ruby -e "puts (00..99).to_a.shuffle.join(' ')");
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ] && [ $R == "OK" ]; then
+if [ "$S" == "$R" ] && [ "$R" == "OK" ]; then
 	printf "${GREEN}$cont .[OK] ${DEF_COLOR}";
 	((res_1++))
 else
@@ -5052,7 +5052,7 @@ do
 ARG=$(ruby -e "puts (00..499).to_a.shuffle.join(' ')");
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ] && [ $R == "OK" ]; then
+if [ "$S" == "$R" ] && [ "$R" == "OK" ]; then
 	printf "${GREEN}$cont .[OK] ${DEF_COLOR}";
 	((res_1++))
 else
@@ -5096,7 +5096,7 @@ ARG=$(ruby -e "puts (00..$var).to_a.shuffle.join(' ')");
 var=$(($var + 1))
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}$cont .[OK] ${DEF_COLOR}";
 	((res_1++))
 else
@@ -5105,7 +5105,7 @@ else
  	((res_2++))
 fi
 R=$(./push_swap $ARG | valgrind --log-fd=1 ./checker $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}";
@@ -5120,7 +5120,7 @@ ARG=$(ruby -e "puts (00..$var).to_a.shuffle.join(' ')");
 var=$(($var + 25))
 S=$(./push_swap $ARG | ./checker_linux $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
-if [ "$S" == $R ]; then
+if [ "$S" == "$R" ]; then
 	printf "${GREEN}$cont .[OK] ${DEF_COLOR}";
 	((res_1++))
 else
@@ -5129,7 +5129,7 @@ else
  	((res_2++))
 fi
 R=$(./push_swap $ARG | valgrind --log-fd=1 ./checker $ARG | grep -Ec 'no leaks are possible|ERROR SUMMARY: 0')
-if [[ $R == 2 ]]; then
+if [[ "$R" == 2 ]]; then
   printf "${GREEN}[MOK] ${DEF_COLOR}";
 else
   printf "${RED} [KO LEAKS] ${DEF_COLOR}";

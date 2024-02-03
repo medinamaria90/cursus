@@ -6,15 +6,15 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:23:39 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/03 21:04:39 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/03 21:30:17 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_if_ordered(t_stack *stack_a)
+void	check_if_ordered(t_stack *stack_a, t_stack *stack_b)
 {
-	if (is_ordered(stack_a) == 0)
+	if (is_ordered(stack_a) == 0 && count_elements(stack_b) == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
@@ -77,5 +77,6 @@ int	main(int argc, char *argv[])
 		free(instruction);
 		instruction = get_next_line(0);
 	}
+	check_if_ordered(stack_a, stack_b);
 	return (0);
 }
