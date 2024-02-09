@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:23:39 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/03 21:35:28 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:42:44 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
+
+void	ft_swap_boths(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_swap(stack_a);
+	ft_swap(stack_b);
+}
 
 void	check_if_ordered(t_stack *stack_a, t_stack *stack_b)
 {
@@ -34,7 +40,7 @@ void	rotate_instruction(t_stack **stack_a, t_stack **stack_b, int rotation)
 	}
 }
 
-void	do_movement(char *line, t_stack **stack_a, t_stack **stack_b)
+int	do_movement(char *line, t_stack **stack_a, t_stack **stack_b)
 {
 	if (ft_strncmp(line, "pa\n", 3) == 0)
 		ft_push(stack_a, stack_b, 1);
@@ -56,6 +62,11 @@ void	do_movement(char *line, t_stack **stack_a, t_stack **stack_b)
 		rotate_instruction(stack_a, stack_b, 1);
 	else if (ft_strncmp(line, "rr\n", 3) == 0)
 		rotate_instruction(stack_a, stack_b, 2);
+	else if (ft_strncmp(line, "ss\n", 3) == 0)
+		ft_swap_boths(stack_b, stack_a);
+	else
+		return (-1);
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -76,7 +87,8 @@ int	main(int argc, char *argv[])
 	instruction = get_next_line(0);
 	while (instruction != NULL)
 	{
-		do_movement(instruction, &stack_a, &stack_b);
+		if (do_movement(instruction, &stack_a, &stack_b) == -1)
+			return (ft_return_error());
 		free(instruction);
 		instruction = get_next_line(0);
 	}
