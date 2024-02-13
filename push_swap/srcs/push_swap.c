@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 11:00:57 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/03 20:59:00 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/13 11:46:43 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ int	main(int argc, char *argv[])
 
 	if (argc == 1)
 		return (0);
-	stack_a = NULL;
-	stack_b = NULL;
 	n = process_input(argv, &stack_a);
 	if (n == -1)
 		return (1);

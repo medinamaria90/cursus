@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:25:06 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/09 11:42:59 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/13 11:52:47 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	process_input(char *input[], t_stack **stack_a)
 {
 	int		n;
 	char	**proc_input;
+	int		i;
 
 	n = 1;
 	if (are_there_spaces(input[n]))
@@ -96,6 +97,9 @@ int	process_input(char *input[], t_stack **stack_a)
 		if (proc_input == NULL)
 			return (ft_return_error());
 		n = ft_process_nbrs(proc_input, stack_a);
+		i = 0;
+		while (proc_input[i])
+			free(proc_input[i++]);
 		free (proc_input);
 	}
 	else

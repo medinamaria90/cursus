@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:23:39 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/09 11:42:44 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/13 11:53:48 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,19 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_b;
 
 	if (argc == 1)
-		return (1);
-	stack_a = NULL;
-	stack_b = NULL;
+		return (0);
 	if (process_input(argv, &stack_a) == -1)
-	{
-		free_stack(&stack_a);
 		return (1);
-	}
 	instruction = get_next_line(0);
 	while (instruction != NULL)
 	{
 		if (do_movement(instruction, &stack_a, &stack_b) == -1)
+		{
+			free (instruction);
+			free_stack(&stack_a);
+			free_stack(&stack_b);
 			return (ft_return_error());
+		}
 		free(instruction);
 		instruction = get_next_line(0);
 	}
