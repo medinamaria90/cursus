@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 19:32:31 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 15:46:15 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/10 21:00:39 by marimedi          #+#    #+#             */
+/*   Updated: 2024/01/24 17:34:26 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *))
 {
-	char			*substr;
-	unsigned int	slen;
+	t_list	*result;
+	t_list	*node;
+	void	*func_result;
 
-	slen = ft_strlen(s);
-	if (s == NULL)
-		return (NULL);
-	if (slen <= start)
-		return (ft_strdup(""));
-	if ((slen - start) < len)
-		len = slen - start;
-	substr = (char *)malloc((len + 1) * sizeof(char));
-	if (substr == NULL)
-		return (NULL);
-	ft_strlcpy(substr, &s[start], len + 1);
-	return (substr);
+	result = NULL;
+	while (lst != NULL)
+	{
+		func_result = (*f)(lst->content);
+		node = ft_lstnew(func_result);
+		if (node == NULL)
+		{
+			free(func_result);
+			ft_lstclear(&result, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&result, node);
+		lst = lst->next;
+	}
+	return (result);
 }

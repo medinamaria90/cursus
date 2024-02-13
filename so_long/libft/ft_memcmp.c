@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 19:32:31 by marimedi          #+#    #+#             */
-/*   Updated: 2024/01/25 15:46:15 by marimedi         ###   ########.fr       */
+/*   Created: 2023/12/01 17:01:55 by marimedi          #+#    #+#             */
+/*   Updated: 2023/12/09 11:45:42 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char			*substr;
-	unsigned int	slen;
+	size_t	count;
+	char	*str1;
+	char	*str2;
 
-	slen = ft_strlen(s);
-	if (s == NULL)
-		return (NULL);
-	if (slen <= start)
-		return (ft_strdup(""));
-	if ((slen - start) < len)
-		len = slen - start;
-	substr = (char *)malloc((len + 1) * sizeof(char));
-	if (substr == NULL)
-		return (NULL);
-	ft_strlcpy(substr, &s[start], len + 1);
-	return (substr);
+	str1 = (char *)s1;
+	str2 = (char *)s2;
+	count = 0;
+	while (n > count)
+	{
+		if ((unsigned char)str1[count] != (unsigned char)str2[count])
+			return ((unsigned char)str1[count] - (unsigned char)str2[count]);
+		count ++;
+	}
+	return (0);
 }
