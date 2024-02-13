@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/12 15:59:40 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/13 13:34:36 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	check_horizontal(char **map, int rows)
 		n++;
 	}
 	n = 0;
-	printf("Rows--> %d\n", rows);
 	while (map[rows - 1][n])
 	{
 		if (map[rows - 1][n] != '1')
@@ -53,6 +52,7 @@ int	check_map(char **map, int rows)
 {
 	if (check_rectangle(map) == 1 || check_horizontal(map, rows) == 1)
 		return (1);
+	check_map_items(map, 6, 15);
 	return (0);		
 }
 

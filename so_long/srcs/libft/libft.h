@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:04:31 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/12 12:10:21 by marimedi         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:55:06 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>	
-# include <stdio.h>
 
 /* ****************************** STRUCT *********************************** */
 
@@ -51,7 +50,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
-void	*ft_realloc(void *ptr, size_t size);
 
 /* ************************ FUNCTIONS PART 2 ******************************** */
 
