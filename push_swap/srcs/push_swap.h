@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:45:18 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/08 12:04:54 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:54:53 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 //LINKED LIST//
 typedef struct s_stack
 {
-	int				content;
+	int				ocntent;
 	int				cost;
 	int				movement;
 	int				go_to;
