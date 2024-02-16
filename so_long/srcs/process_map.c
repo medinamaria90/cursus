@@ -6,54 +6,46 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/13 13:34:36 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:42:25 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_horizontal(char **map, int rows)
+void look_for_player(t_map *map)
 {
-	int	n;
+	int row;
 
-	n = 0;
-	while (map[0][n])
+	row = 0;
+	while (map->grid[row])
 	{
-		if (map[0][n] != '1')
-			return (1);
-		n++;
+		if (!ft_strchr(map->grid[row], 'P'))
+			row++;
+		else
+		{
+			map->player.row = row;
+			map->player.col = ft_strchr(map->grid[row], 'P') - map->grid[row];;
+			return ;
+		}
 	}
-	n = 0;
-	while (map[rows - 1][n])
-	{
-		if (map[rows - 1][n] != '1')
-			return (1);
-		n++;
-	}
-	return (0);
 }
 
-int	check_rectangle(char **map)
+void look_for_exit(t_map *map)
 {
-	size_t	len_row;
-	int	n;
+	int row;
 
-	n = 0;
-	len_row = ft_strlen(map[n]);
-	while (map[++n])
+	row = 0;
+	while (map->grid[row])
 	{
-		if (ft_strlen(map[n]) != len_row)
-			return (1);
+		if (!ft_strchr(map->grid[row], 'E'))
+			row++;
+		else
+		{
+			map->exit.row = row;
+			map->exit.col = ft_strchr(map->grid[row], 'E') - map->grid[row];
+			return ;
+		}
 	}
-	return (0);
-}
-
-int	check_map(char **map, int rows)
-{
-	if (check_rectangle(map) == 1 || check_horizontal(map, rows) == 1)
-		return (1);
-	check_map_items(map, 6, 15);
-	return (0);		
 }
 
 char *get_row(int fd)
@@ -79,21 +71,31 @@ char *get_row(int fd)
 	return (new_line);
 }
 
-char **process_map(int fd)
+
+
+char **process_map(int fd, t_map *map)
 {
-	char	**map;
 	int		i;
-	
-	map = malloc(sizeof(char *));
-	map[0] = get_row(fd);
+	int		lines;
+
 	i = 0;
-	while (map[i] != NULL)
-	{
-		i++;
-		map = ft_realloc(map, sizeof(char *) * (i + 2));
-		map[i] = get_row(fd);
+	map->grid = malloc(sizeof(char *));
+	if (map->grid == NULL)
+		return (NULL);
+	lines = 0;
+	map->grid[lines] = get_row(fd);
+	while (map->grid[lines])
+	{	
+		lines++;
+		map->grid = realloc(map->grid, (lines + 1) * sizeof(char *) + 1);
+		if (map->grid == NULL)
+			return (NULL);
+		map->grid[lines] = get_row(fd);
 	}
-	printf("Check map: %d\n", check_map(map, i));
-	print_map(map);
-	return (map);
+	look_for_player(map);
+	look_for_exit(map);
+	printf("\n");
+	print_map(map->grid);
+	printf("\n");
+	return (map->grid);
 }

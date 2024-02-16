@@ -6,11 +6,12 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:16:36 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/12 11:03:30 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:34:04 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
+#define BUFFER_SIZE 42
 
 char	*free_memory(char **str)
 {
@@ -26,7 +27,7 @@ char	*ft_divide_line(char **container)
 	char	*new_line;
 	size_t	break_line;
 
-	if (ft_strchr_gnl(*container, '\n') == NULL)
+	if (ft_strchr(*container, '\n') == NULL)
 	{
 		new_line = ft_strdup_len(*container, -1);
 		if (!new_line)
@@ -35,7 +36,7 @@ char	*ft_divide_line(char **container)
 			free_memory(container);
 		return (new_line);
 	}
-	break_line = (ft_strchr_gnl(*container, '\n') - *container) + 1;
+	break_line = (ft_strchr(*container, '\n') - *container) + 1;
 	aux_buff = ft_strdup_len(&(*container)[break_line], -1);
 	if (!aux_buff)
 		return (NULL);
@@ -58,7 +59,7 @@ char	*read_file(int fd, char **container)
 		return (free_memory(&buffer));
 	bytes = 1;
 	buffer[0] = 0;
-	while (!ft_strchr_gnl(buffer, '\n') && bytes > 0)
+	while (!ft_strchr(buffer, '\n') && bytes > 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes == -1)
@@ -69,6 +70,8 @@ char	*read_file(int fd, char **container)
 			return (free_memory(&buffer));
 	}
 	free_memory(&buffer);
+	(void)bytes;
+	(void)fd;
 	return (*container);
 }
 
@@ -77,7 +80,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*container;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || (read(fd, NULL, 0) < 0))
+	if (fd < 0)
 	{
 		if (container)
 			return (free_memory(&container));
@@ -91,7 +94,7 @@ char	*get_next_line(int fd)
 	line = ft_divide_line(&container);
 	if (!line)
 		return (free_memory(&container));
-	if (ft_strlen_gnl(line) == 0 && !container)
+	if (ft_strlen(line) == 0 && !container)
 		return (free_memory(&line));
 	return (line);
 }

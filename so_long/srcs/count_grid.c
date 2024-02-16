@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   count_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 11:34:22 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/12 14:06:17 by marimedi         ###   ########.fr       */
+/*   Created: 2024/02/15 09:40:46 by marimedi          #+#    #+#             */
+/*   Updated: 2024/02/15 11:41:55 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	*ft_realloc(void *ptr, size_t size)
+
+
+int	count_rows(char **map_grid)
 {
-	void	*new_ptr;
-	if (ptr == NULL)
-		return (malloc(size));
-	new_ptr = malloc(size);
-	if (new_ptr == NULL)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	ft_memmove(new_ptr, ptr, size);
-	free(ptr);
-	return (new_ptr);
+	int	rows;
+
+	if (map_grid == NULL)
+		return (0);
+	rows = 0;
+	while (map_grid[rows] != NULL)
+		rows++;
+	return (rows);
+}
+int	count_columns(char **map_grid)
+{
+	int	col;
+
+	if (map_grid == NULL)
+		return (1);
+	col = 0;
+	while (map_grid[0][col] != '\0')
+		col++;
+	return (col);
 }

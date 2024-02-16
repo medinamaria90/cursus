@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:04:31 by marimedi          #+#    #+#             */
-/*   Updated: 2023/12/11 15:55:06 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:04:20 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,14 @@
 
 # include <stddef.h>
 # include <stdlib.h>
-# include <unistd.h>	
+# include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+
+/* ****************************** GET NEXT LINE *********************************** */
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
+char	*get_next_line(int fd);
+char	*ft_strdup_len(const char *s, int len);
 
 /* ****************************** STRUCT *********************************** */
 

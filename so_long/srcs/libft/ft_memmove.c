@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:18:33 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/12 14:07:24 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:35:03 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	if(!dest || !src)
-		return (NULL);
 	if (src < dest)
 	{
 		while (n > 0)
