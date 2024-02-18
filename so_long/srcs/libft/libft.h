@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:04:31 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/14 16:04:20 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:49:51 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void*));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
+
+/* *************************** EXTRA FUNCTIONS ************************************** */
+int		ft_count_char_in_str(const char *str, char c);
 
 #endif

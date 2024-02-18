@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:42:41 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/15 11:41:24 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/18 19:40:47 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,29 @@ void	free_array(char **grid)
 	free(grid);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_map	*map;
+	char	*filename;
 	int		fd;
-
+	char	*extension;
+	
+	if (argc != 2)
+		return (ft_error(1));
+	filename = argv[1];
+	extension = ft_strrchr(filename, '.');
+	if (extension == NULL)
+		return (ft_error(1));
+	if (ft_strncmp(extension, ".ber", ft_strlen(extension)) != 0)
+		return(ft_error(2));
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (ft_error(1));
 	map = malloc(sizeof(t_map));
-	fd = open("map.ber", O_RDONLY);
-	map->grid = process_map(fd, map);
-	if (map->grid == NULL)
+	if (process_map(fd, map) == -1)
 		return (1);
-	check_map(map);
-	free_array(map->grid);
+	//free_array(map->grid);
 	printf("last\n");
-	free(map);
+	//free(map);
 	return (0);
 }

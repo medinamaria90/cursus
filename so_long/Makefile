@@ -6,7 +6,7 @@
 #    By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#              #
-#    Updated: 2024/02/15 11:12:33 by marimedi         ###   ########.fr        #
+#    Updated: 2024/02/18 17:47:23 by marimedi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ CYAN=\033[0;36m
 ORANGE=\033[0;91m
 NC=\033[0m
 
-SRCS =  srcs/check_map.c srcs/process_map.c srcs/so_long.c srcs/count_grid.c \
+SRCS =  srcs/check_map.c srcs/process_map.c srcs/so_long.c \
+		srcs/flood_field.c srcs/ft_error.c\
 
 OBJS = $(SRCS:.c=.o)
 
