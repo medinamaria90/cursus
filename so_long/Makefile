@@ -6,13 +6,13 @@
 #    By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#              #
-#    Updated: 2024/02/18 17:47:23 by marimedi         ###   ########.fr        #
+#    Updated: 2024/02/19 10:24:45 by marimedi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = gcc
-CFLAGS = -g
+CFLAGS = -g -Wall -Werror -Wextra
 LIBFT_PATH = srcs/libft/
 LIBFT_LIB = $(LIBFT_PATH)libft.a
 

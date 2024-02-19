@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:48:01 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/18 18:49:32 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:31:02 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	ft_error(int error)
 	if (error == 1)
 			write(1, "Introduce just one argument, which must be a valid map\n", 55);
 	if (error == 2)
-			write(1, "The map extension is not correct\n", 33);
+			write(1, "Map extension incorrect\n", 24);
 	if (error == 3)
-			write(1, "The map is empty\n", 17);
+			write(1, "Map is empty\n", 13);
 	if (error == 4)
 			write(1, "Exit, coins or character not found\n", 35);
 	if (error == 5)
@@ -28,8 +28,10 @@ int	ft_error(int error)
 	if (error == 6)
 			write(1, "The walls are not closed\n", 25);
 	if (error == 7)
-			write(1, "There is not a valid way\n", 25);
+			write(1, "Not a valid way\n", 16);
 	if (error == 8)
-			write(1, "There is at least one duplicated character\n", 43);
+			write(1, "Duplicated character\n", 21);
+	if (error == 9)
+			write(1, "Not recognizable character\n", 27);
 	return (1);
 }

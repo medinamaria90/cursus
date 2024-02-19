@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:42:41 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/18 19:40:47 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:36:30 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	main(int argc, char *argv[])
 	if (process_map(fd, map) == -1)
 		return (1);
 	//free_array(map->grid);
-	printf("last\n");
 	//free(map);
 	return (0);
 }

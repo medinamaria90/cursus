@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/18 19:41:14 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:17:39 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void look_for_components(t_map *map)
 	int row;
 
 	row = 0;
-	map->coins == 0;
-	map->exit.row == -1;
-	map->player.row == -1;
+	map->coins = 0;
+	map->exit.row = -1;
+	map->player.row = -1;
 	while (map->grid[row])
 	{
 		if (ft_strchr(map->grid[row], 'E')) 
@@ -28,13 +28,13 @@ void look_for_components(t_map *map)
 			map->exit.row = row;
 			map->exit.col = ft_strchr(map->grid[row], 'E') - map->grid[row];
 		}
-		if (ft_strchr(map->grid[row], 'P'))
+		else if (ft_strchr(map->grid[row], 'P'))
 		{
 			map->player.row = row;
 			map->player.col = ft_strchr(map->grid[row], 'P') - map->grid[row];
 		}
-		if (ft_strchr(map->grid[row], 'C'))
-			map->coins = map->coins + ft_count_char_in_str(map->grid[row], 'C') ;
+		else if (ft_strchr(map->grid[row], 'C'))
+			map->coins = map->coins + ft_count_char_in_str(map->grid[row], 'C');
 		row++;
 	}
 }
@@ -82,7 +82,6 @@ int	process_map(int fd, t_map *map)
 		map->grid[lines] = get_row(fd);
 	}
 	look_for_components(map);
-	printf("coins -> %d player row --> %d, exit row --> %d\n", map.coins, map->player.row, map->exit.row);
 	if (map->coins == 0 || map->player.row == -1 || map->exit.row == -1)
 		return (ft_error(4));
 	if (check_map(map) == -1)

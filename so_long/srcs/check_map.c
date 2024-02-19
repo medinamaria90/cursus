@@ -6,11 +6,32 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/18 18:49:53 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:20:00 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	forbidden_chars(t_map *map)
+{
+	int		col;
+	int		row;
+	char	allowed_chars[6];
+
+	row = 0;
+	while (map->grid[row])
+	{
+		col = 0;
+		while(map->grid[row][col])
+		{
+			if (!ft_strchr(allowed_chars, map->grid[row][col]))
+				return (1);
+			col++;
+		}
+		row++;
+	}
+	return (0);
+}
 
 int	check_walls(t_map *map)
 {
@@ -33,8 +54,8 @@ int	check_walls(t_map *map)
 			col--;
 		else if (direction == 3)
 			row--;
-		if (col == 0 && (row == 0 || row == map->rows - 1) 
-			|| col == map->cols - 1 && (row == 0 || row == map->rows - 1))
+		if ((col == 0 && (row == 0 || row == map->rows - 1)) 
+			|| (col == map->cols - 1 && (row == 0 || row == map->rows - 1)))
 			direction++;
 	}
 	return (0);
@@ -82,21 +103,16 @@ int	check_isolated_items(t_map *map)
 
 int	check_map(t_map *map)
 {
-	printf("In check map\n");
 	if (check_if_rectangle(map) == 1)
 		return (ft_error(5));
-	printf("Just checking\n");
 	if (check_walls(map) == 1)
 		return (ft_error(6));
+	if (forbidden_chars(map) == 1)
+		return (ft_error(9));
 	initialize_visited(map);
 	flood_fill(map, map->player);
-	printf("\n");
-	print_map(map->visited);
-	printf("\n");
-	print_map(map->grid);
-	printf("\n");
 	if (check_isolated_items(map) == 1)
 		return (ft_error(7));
-	printf("ALL IS OK =D \n");
+	printf("Map is correct\n");
 	return (0);
 }
