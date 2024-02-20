@@ -1,64 +1,57 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#              #
-#    Updated: 2024/02/19 10:24:45 by marimedi         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# General Settings
+CC := gcc
+CFLAGS := -Wall -Werror -Wextra -g
+LIBFT_PATH := libs/libft/
+LIBFT_LIB := $(LIBFT_PATH)libft.a
+LIBMLX_PATH := ./libs/MLX42
+LIBMLX_LIB := $(LIBMLX_PATH)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-NAME = so_long
-CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra
-LIBFT_PATH = srcs/libft/
-LIBFT_LIB = $(LIBFT_PATH)libft.a
+# Headers and Libraries
+HEADERS := -I ./includes -I $(LIBMLX_PATH)/include
 
-RED=\033[0;31m
-GREEN=\033[0;32m
-YELLOW=\033[0;33m
-BLUE=\033[0;34m
-MAGENTA=\033[0;35m
-CYAN=\033[0;36m
-ORANGE=\033[0;91m
-NC=\033[0m
+# So_Long Settings
+SO_LONG := so_long
+SO_LONG_SRCS := srcs/check_map.c srcs/process_map.c srcs/so_long.c srcs/flood_field.c srcs/ft_error.c
+SO_LONG_OBJS := $(SO_LONG_SRCS:.c=.o)
 
-SRCS =  srcs/check_map.c srcs/process_map.c srcs/so_long.c \
-		srcs/flood_field.c srcs/ft_error.c\
+# Colors
+RED := \033[0;31m
+GREEN := \033[0;32m
+YELLOW := \033[0;33m
+BLUE := \033[0;34m
+MAGENTA := \033[0;35m
+CYAN := \033[0;36m
+ORANGE := \033[0;91m
+NC := \033[0m
 
-OBJS = $(SRCS:.c=.o)
+# Rules
+all: libmlx $(SO_LONG)
 
-all:
-	@echo " ------------->>> SO_LONG <<<------------$(NC)"
-	@echo " "
-	@make dependencies 
-	@make $(NAME)
+libmlx:
+	@cmake $(LIBMLX_PATH) -B $(LIBMLX_PATH)/build && make -C $(LIBMLX_PATH)/build -j4
 
-	
-%.o : %.c
-	@echo "$(CYAN)Creating $@ file"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+# So_Long Rules
+$(SO_LONG): dependencies $(SO_LONG_OBJS)
+	@echo "$(CYAN)Creating $(SO_LONG)$(NC)"
+	@$(CC) $(CFLAGS) $(SO_LONG_OBJS) -o $@ $(LIBFT_LIB) $(LIBMLX_LIB) $(HEADERS)
+
+%.o: %.c
+	@echo "$(CYAN)Creating $@ file$(NC)"
+	@$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS)
 
 dependencies:
 	@make -C $(LIBFT_PATH) all
 
-$(NAME): $(OBJS)
-	@echo "Compiling $(NAME) objects $(NC)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -o $(NAME)
-
 clean:
 	@echo "$(YELLOW)Removing objects$(NC)"
 	@make -C $(LIBFT_PATH) clean
-	@rm -f $(OBJS)
+	@rm -f $(SO_LONG_OBJS)
 
 fclean: clean
 	@echo "$(YELLOW)Removing executables$(NC)"
 	@make -C $(LIBFT_PATH) fclean
-	@rm -f $(NAME)
+	@rm -f $(SO_LONG)
 
 re: fclean all
 
-.PHONY: all clean fclean re
-
+.PHONY: all libmlx dependencies clean fclean re

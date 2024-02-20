@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/19 13:17:39 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:19:25 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ char *get_row(int fd)
 
 int	process_map(int fd, t_map *map)
 {
-	int		i;
 	int		lines;
 
-	i = 0;
 	map->grid = malloc(sizeof(char *));
 	if (map->grid == NULL)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:28:38 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/19 13:20:00 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/20 09:38:23 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	forbidden_chars(t_map *map)
 	char	allowed_chars[6];
 
 	row = 0;
+	ft_strlcpy(allowed_chars, "10EPC", 6);
 	while (map->grid[row])
 	{
 		col = 0;
