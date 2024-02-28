@@ -6,12 +6,12 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 11:11:40 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/20 13:23:50 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:00:51 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define WIDTH 5120
-#define HEIGHT 2880
+#define WIDTH 1000
+#define HEIGHT 800
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

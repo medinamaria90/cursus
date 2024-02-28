@@ -6,7 +6,7 @@
 /*   By: marimedi <marimedi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:42:41 by marimedi          #+#    #+#             */
-/*   Updated: 2024/02/20 13:22:00 by marimedi         ###   ########.fr       */
+/*   Updated: 2024/02/27 14:46:30 by marimedi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,25 @@ int	check_arguments(int argc, char *argv[])
 	char	*extension;
 	
 	if (argc != 2)
-		return (ft_error(1));
+	{
+		ft_error(1);
+		return (-1);
+	}
 	filename = argv[1];
 	extension = ft_strrchr(filename, '.');
 	if (extension == NULL)
 		return (ft_error(1));
 	if (ft_strncmp(extension, ".ber", ft_strlen(extension)) != 0)
-		return(ft_error(2));
+	{
+		ft_error(2);
+		return (-1);
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (ft_error(1));
+	{
+		ft_error(1);
+		return (-1);
+	}
 	return (fd);
 }
 
@@ -79,22 +88,52 @@ static void ft_hook(void* param)
 	(void)mlx;
 }
 
+int get_rgba(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void mlx_draw_pixel(uint8_t* pixel, uint32_t color)
+{
+	*(pixel++) = (uint8_t)(color >> 24);
+	*(pixel++) = (uint8_t)(color >> 16);
+	*(pixel++) = (uint8_t)(color >> 8);
+	*(pixel++) = (uint8_t)(color & 0xFF);
+}
+
+void	write_color(mlx_image_t** img, int width, int height, int32_t color)
+{
+	int32_t	y;
+	int32_t	x;
+
+	y = 0;
+	printf("img width is %d\n", width);
+	printf("img width is %d\n", height);
+	while (y < height)
+	{
+		x = 0;
+		while ( x < width)
+		{
+			mlx_draw_pixel((*img)->pixels + (y * width + x) * sizeof(int32_t), color);
+			x++;
+		}
+		y++;
+	}
+}
+
 int	create_graphics(t_map *map)
 {
-	mlx_set_setting(MLX_MAXIMIZED, false);
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "So_long", true);
+	//int green_color = 0x00A0BB24;
+	
+	//mlx_set_setting(MLX_MAXIMIZED, false);
+	mlx_t* mlx = mlx_init(100 * map->cols, 100 * map->rows, "So_long", true);
 	if (!mlx)
 		ft_error_mlx();
 
-	/* Do stuff */
-
-	// Create and display the image.
-	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
-	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-		ft_error_mlx();
-
-	// Even after the image is being displayed, we can still modify the buffer.
-	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
+	mlx_image_t* bg_img = mlx_new_image(mlx, 100 * map->cols, 100 * map->rows);
+	
+	write_color(&bg_img, 100 * map->cols, 100 * map->rows, get_rgba(0, 0, 255, 255));
+	mlx_image_to_window(mlx, bg_img, 0, 0);
 
 	// Register a hook and pass mlx as an optional param.
 	// NOTE: Do this before calling mlx_loop!
